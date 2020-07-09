@@ -1,0 +1,31 @@
+name: Benchmark
+on:
+  push:
+    branches:
+    - 'tmp/test/**'
+  issue_comment:
+    types:
+    - created
+  workflow_dispatch:
+    inputs:
+      varA:
+        description: 'first input'
+        required: true
+        default: 'first'
+jobs:
+  triggered_via_push:
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-18.04
+    steps:
+    - run: echo "benchmark via push"
+  triggered_via_pr_comment:
+    if: ${{ github.event_name == 'issue_comment' && github.event.action == 'created' && github.event.comment.body == 'Test' }}
+    runs-on: ubuntu-18.04
+    steps:
+    - run: echo "benchmark via pr comment"
+  triggered_via_dispatch:
+    runs-on: ubuntu-18.04
+    steps:
+    - run: |
+        echo "varA: ${{ github.event.inputs.varA}}"
+        echo "benchmark via dispatch"
