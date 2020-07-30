@@ -423,6 +423,7 @@ dependencies = [
  "ckb-error",
  "ckb-jsonrpc-types",
  "ckb-logger",
+ "ckb-metrics",
  "ckb-proposal-table",
  "ckb-rust-unstable-port",
  "ckb-shared",
@@ -640,7 +641,6 @@ name = "ckb-logger"
 version = "0.35.0-pre"
 dependencies = [
  "log 0.4.11",
- "serde_json",
 ]
 
 [[package]]
@@ -1044,6 +1044,7 @@ dependencies = [
  "ckb-error",
  "ckb-fee-estimator",
  "ckb-logger",
+ "ckb-metrics",
  "ckb-network",
  "ckb-shared",
  "ckb-store",
