@@ -18,6 +18,7 @@ use ckb_chain_spec::{consensus::Consensus, ChainSpec};
 use ckb_jsonrpc_types::ScriptHashType;
 use ckb_logger::info_target;
 use ckb_logger_service::LoggerInitGuard;
+use ckb_metrics_service::Guard as MetricsInitGuard;
 use clap::{value_t, ArgMatches, ErrorKind};
 use std::path::PathBuf;
 
@@ -32,6 +33,8 @@ pub struct Setup {
 pub struct SetupGuard {
     #[allow(dead_code)]
     logger_guard: LoggerInitGuard,
+    #[allow(dead_code)]
+    metrics_guard: MetricsInitGuard,
     #[allow(dead_code)]
     sentry_guard: Option<sentry::internals::ClientInitGuard>,
 }
@@ -67,6 +70,12 @@ impl Setup {
         }
         let logger_guard = ckb_logger_service::init(logger_config)?;
 
+        let metrics_config = self.config.metrics().to_owned();
+        let metrics_guard = ckb_metrics_service::init(metrics_config).map_err(|err| {
+            eprintln!("Config Error: {:?}", err);
+            ExitCode::Config
+        })?;
+
         let sentry_guard = if self.is_sentry_enabled {
             let sentry_config = self.config.sentry();
 
@@ -93,6 +102,7 @@ impl Setup {
 
         Ok(SetupGuard {
             logger_guard,
+            metrics_guard,
             sentry_guard,
         })
     }

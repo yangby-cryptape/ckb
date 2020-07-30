@@ -1,0 +1,21 @@
+[package]
+name = "ckb-metrics-service"
+version = "0.35.0-pre"
+license = "MIT"
+authors = ["Nervos <dev@nervos.org>"]
+edition = "2018"
+
+[dependencies]
+ckb-async-runtime = { path = "../runtime" }
+ckb-stop-handler = { path = "../stop-handler" }
+metrics-runtime = "~0.13.1"
+metrics-core = "~0.5.2"
+metrics-exporter-log = "~0.4.0"
+metrics-exporter-http = "~0.3.0"
+metrics-observer-json = "~0.1.1"
+metrics-observer-yaml = "~0.1.1"
+metrics-observer-prometheus = "~0.1.4"
+serde = { version = "~1.0.105", features = ["derive"] }
+regex = "~1.1.6"
+log = "~0.4.11"
+tokio = { version = "0.2", features = ["sync", "blocking", "rt-threaded", "time", "io-driver"] }

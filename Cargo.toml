@@ -21,6 +21,8 @@ members = [
     "util/build-info",
     "util/logger",
     "util/logger-service",
+    "util/metrics",
+    "util/metrics-service",
     "util/memory-tracker",
     "util",
     "util/hash",

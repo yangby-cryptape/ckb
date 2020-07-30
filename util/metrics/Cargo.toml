@@ -1,0 +1,9 @@
+[package]
+name = "ckb-metrics"
+version = "0.35.0-pre"
+license = "MIT"
+authors = ["Nervos <dev@nervos.org>"]
+edition = "2018"
+
+[dependencies]
+metrics = "~0.12.1"
