@@ -666,6 +666,7 @@ version = "0.35.0-pre"
 dependencies = [
  "ckb-db",
  "ckb-logger",
+ "ckb-metrics",
  "futures 0.3.4",
  "heim",
  "jemalloc-ctl",
